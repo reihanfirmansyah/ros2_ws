@@ -62,11 +62,11 @@ $$x' = \frac{x}{\|q\|}, \quad y' = \frac{y}{\|q\|}, \quad z' = \frac{z}{\|q\|}, 
 
 #### 2. Perhitungan Sudut Euler (Radian ke Derajat)
 
-$$\text{Roll } (\phi) = \operatorname{atan2}\left(2(w'x' + y'z'), \; 1 - 2(x'^2 + y'^2)\right)$$
+$$\text{Roll } (\phi) = \text{atan2}\left(2(w'x' + y'z'), \; 1 - 2(x'^2 + y'^2)\right)$$
 
-$$\text{Pitch } (\theta) = \arcsin\left(\operatorname{clamp}\left(2(w'y' - z'x'), \; -1, \; 1\right)\right)$$
+$$\text{Pitch } (\theta) = \arcsin\left(\text{clamp}\left(2(w'y' - z'x'), \; -1, \; 1\right)\right)$$
 
-$$\text{Yaw } (\psi) = \operatorname{atan2}\left(2(w'z' + x'y'), \; 1 - 2(y'^2 + z'^2)\right)$$
+$$\text{Yaw } (\psi) = \text{atan2}\left(2(w'z' + x'y'), \; 1 - 2(y'^2 + z'^2)\right)$$
 
 Nilai dalam radian kemudian dikonversi ke derajat menggunakan $\text{deg} = \text{rad} \times \frac{180}{\pi}$ (`math.degrees()`).
 
