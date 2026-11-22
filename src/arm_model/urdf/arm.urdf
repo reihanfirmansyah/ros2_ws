@@ -14,7 +14,6 @@
     <color rgba="0.2 0.2 0.2 1"/>
   </material>
 
-  <!-- Base Link (Tinggi 0.1 m) -->
   <link name="base_link">
     <visual>
       <geometry>
@@ -25,7 +24,6 @@
     </visual>
   </link>
 
-  <!-- JOINT 1 (DoF 1): Rotasi sumbu Z di atas base_link (z = 0.1) -->
   <joint name="joint_1" type="revolute">
     <parent link="base_link"/>
     <child link="link_2"/>
@@ -34,7 +32,6 @@
     <limit lower="-3.14" upper="3.14" effort="10.0" velocity="1.0"/>
   </joint>
 
-  <!-- Lengan bawah (Tinggi 0.25 m) -->
   <link name="link_2">
     <visual>
       <geometry>
@@ -45,7 +42,6 @@
     </visual>
   </link>
 
-  <!-- JOINT 2 (DoF 2): Rotasi sumbu Y di ujung atas link_2 (z = 0.25) -->
   <joint name="joint_2" type="revolute">
     <parent link="link_2"/>
     <child link="link_3"/>
@@ -54,7 +50,6 @@
     <limit lower="-1.57" upper="1.57" effort="10.0" velocity="1.0"/>
   </joint>
 
-  <!-- Lengan atas (Tinggi 0.20 m) -->
   <link name="link_3">
     <visual>
       <geometry>
@@ -65,7 +60,6 @@
     </visual>
   </link>
 
-  <!-- JOINT 3 (DoF 3): Rotasi sumbu Y di ujung atas link_3 (z = 0.20) -->
   <joint name="joint_3" type="revolute">
     <parent link="link_3"/>
     <child link="link_4"/>
@@ -74,9 +68,7 @@
     <limit lower="-1.57" upper="1.57" effort="10.0" velocity="1.0"/>
   </joint>
 
-  <!-- LINK 4: Gripper / Pencapit (3 visual dalam 1 link) -->
   <link name="link_4">
-    <!-- Telapak gripper (z: 0 sampai 0.025) -->
     <visual>
       <geometry>
         <box size="0.03 0.12 0.025"/>
@@ -85,7 +77,6 @@
       <material name="dark_gray"/>
     </visual>
 
-    <!-- Jari kiri (nempel di atas telapak, z: 0.025 sampai 0.115) -->
     <visual>
       <geometry>
         <box size="0.03 0.02 0.09"/>
@@ -94,7 +85,6 @@
       <material name="dark_gray"/>
     </visual>
 
-    <!-- Jari kanan (nempel di atas telapak, z: 0.025 sampai 0.115) -->
     <visual>
       <geometry>
         <box size="0.03 0.02 0.09"/>
@@ -103,5 +93,24 @@
       <material name="dark_gray"/>
     </visual>
   </link>
+
+<ros2_control name="arm_ros2_control" type="system">
+    <hardware>
+      <plugin>mock_components/GenericSystem</plugin>
+      <param name="example_param">example_value</param>
+    </hardware>
+    <joint name="joint_1">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+    <joint name="joint_2">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+    <joint name="joint_3">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+    </joint>
+  </ros2_control>
 
 </robot>
